@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Belleza);
+
+body {
+  font-family:  Belleza, Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+
+table {
+  margin-left: 2em;
+}
+
+td {
+  padding-right: 1em;
+  padding-bottom: .5em;
+}
+
+td.example {
+/* Eliminate space between images, see:
+<http://stackoverflow.com/questions/6902237/css-unwanted-spacing-between-anchor-tag-elements/6902524#6902524>
+*/
+  font-size: 0;
+}
+ 
+a, a:link, a:visited, a:active {
+  color: #aaaaaa;
+  text-decoration: none;
+}
+
+
+
