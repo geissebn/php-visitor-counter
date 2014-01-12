@@ -110,13 +110,43 @@ class Counter {
     return $this->_getAndIncCounter();
   }
   
+  private function _findRelativeImageDirectoryURL() {
+    // How are calling script and this script related?
+    $thisDir =  realpath(dirname(__FILE__)) . '/';
+    $callingDir = realpath(dirname($_SERVER['SCRIPT_FILENAME'])) . '/';
+    $dirPrefix = '';
+    if ($callingDir != $thisDir) {
+      // Cut of the common prefix part
+      while (strlen($callingDir) > 0 && strlen($thisDir) > 0 && $callingDir[0] == $thisDir[0]) {
+        $callingDir = substr($callingDir, 1);
+        $thisDir = substr($thisDir, 1);
+      }
+      
+      if (strlen($callingDir) == 0) {
+        // This script was called from a parent directory
+        if ($thisDir[0] == '/') {
+          $thisDir = substr($thisDir, 1);
+        }
+        $dirPrefix = $thisDir;
+      } else {
+        // This script was called by an 'brother' directory (same ancestor)
+        // -> go one directeory up for each '/' found in remaining $callingDir
+        for ($i = 0; $i < substr_count($callingDir, '/'); $i++) {
+          $dirPrefix .= '../';
+        }
+        // -> and then go down
+        $dirPrefix .= $thisDir;
+      }
+    }
+    return $dirPrefix . 'styles/' . Configuration::getStyle() . '/';
+  }
+  
   public function asHTMLImages() {
     $count = $this->_getAndIncCounter();
     $gap = Configuration::getExtraGap();
     foreach (str_split($count) as $digit) {
-      echo '<img src ="' . Configuration::getCounterUrl() . 'counter/styles/'
-        . Configuration::getStyle() . '/' . $digit . '.png" alt="' . $digit
-        . '" style="padding-right:'. $gap . 'px" />';
+      echo '<img src ="' . $this->_findRelativeImageDirectoryURL() . $digit . '.png" alt="'
+        . $digit . '" style="padding-right:'. $gap . 'px" />';
     }
   }
 }

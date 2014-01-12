@@ -56,13 +56,6 @@ class Configuration {
   }
   
   /**
-   *  Domain & Path where the counter is located
-   */
-  public static function getCounterUrl() {
-    return '../';
-  }
-  
-  /**
    * A Reload doesn't could that long (seconds).
    * 
    * Use 0 to disable this feature

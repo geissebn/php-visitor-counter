@@ -68,7 +68,7 @@ $counter = new Counter();
     </tbody>
   </table>
   
-  <h2>Technologies / Conformance</h2>
+  <h2>Technologies / Validity</h2>
   
   <a href="http://www.php.net">
     <img src="powered_by_php.png" width="88" height="31" alt="Powered by PHP!" />
