@@ -1,7 +1,7 @@
 <?php
 require_once 'Configuration.class.php';
 
-public class Counter {
+class Counter {
 
   private $_db;
   
